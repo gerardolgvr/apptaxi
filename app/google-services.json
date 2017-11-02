@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1037208213433",
+    "firebase_url": "https://mr-moto.firebaseio.com",
+    "project_id": "mr-moto",
+    "storage_bucket": "mr-moto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037208213433:android:25360c5f0f485797",
+        "android_client_info": {
+          "package_name": "com.example.gerar.mrmoto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037208213433-3iof8hmungv7lf5f96f1d70mmu76mj84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQhGDTvfIc1loM55FnzJoJ5LXGBzzvYt8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
