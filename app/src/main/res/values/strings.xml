@@ -6,4 +6,11 @@
     <string name="text_button_login">Login</string>
     <string name="dont_have_account">¿No tienes cuenta?,   </string>
     <string name="create_here">Crea una aquí</string>
+    <string name="hint_email">Correo</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_user">Usuario</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="text_button_createaccount">Únete</string>
+    <string name="toolbar_title_createaccount">Crear Cuenta</string>
+    <string name="hint_cellphone">Celular</string>
 </resources>
