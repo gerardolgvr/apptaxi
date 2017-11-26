@@ -13,4 +13,16 @@
     <string name="text_button_createaccount">Únete</string>
     <string name="toolbar_title_createaccount">Crear Cuenta</string>
     <string name="hint_cellphone">Celular</string>
+    <string name="text_button_confirmdata">Guardar</string>
+    <string name="hint_birthdate">Fecha Nacimiento</string>
+    <string name="hint_address">Dirección</string>
+    <string name="text_button_fechaNac">Escoger</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Historial</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_button_solicitarServicio">Solicitar Servicio</string>
 </resources>
