@@ -54,20 +54,24 @@ public class CreateAccountActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Contraseña invalida", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(!task.isSuccessful()){
+                                        Toast.makeText(CreateAccountActivity.this, "Error al crear cuenta", Toast.LENGTH_SHORT).show();;
+                                    } else {
+                                        startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
+                                        finish();
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Las contraseñas deben coincidir", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(!task.isSuccessful()){
-                                    Toast.makeText(CreateAccountActivity.this, "Error al crear cuenta", Toast.LENGTH_SHORT).show();;
-                                } else {
-                                    startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class));
-                                    finish();
-                                }
-                            }
-                        });
+
             }
         });
 
