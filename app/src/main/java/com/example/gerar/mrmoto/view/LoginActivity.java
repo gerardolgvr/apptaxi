@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.gerar.mrmoto.R;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     //elementos para la autenticacion en firebase
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -37,10 +43,34 @@ public class LoginActivity extends AppCompatActivity {
     //variable de uso
     private String email, password, uID;
 
+    //
+    private GoogleApiClient googleApiClient;
+    private SignInButton signInButton;
+    public static final int SIGN_IN_CODE = 777;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder()
+                .requestEmail()
+                .requestProfile()
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        signInButton = (SignInButton) findViewById(R.id.signInButton);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(intent, SIGN_IN_CODE);
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -113,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goHome(){
-        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+        startActivity(new Intent(LoginActivity.this, HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_DOCUMENT));
         finish();
     }
 
@@ -128,6 +158,31 @@ public class LoginActivity extends AppCompatActivity {
     public void goCreateAccount(View view){
         Intent intent = new Intent(this, CreateAccountActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SIGN_IN_CODE){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+
+
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if(result.isSuccess()){
+            goHome();
+        } else {
+            Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

@@ -50,6 +50,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     return;
                 }
                 if(password.equals(confirmPassword)){
+
                     if(password.equals("")){
                         Toast.makeText(getApplicationContext(), "Contraseña invalida", Toast.LENGTH_SHORT).show();
                         return;

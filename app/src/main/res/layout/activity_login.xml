@@ -31,13 +31,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="@dimen/paddin_horizontal_login">
+                android:padding="@dimen/paddin_horizontal_login"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -69,6 +72,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_button_login"
                     android:theme="@style/RaisedButtonDark"/>
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/signInButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.gms.common.SignInButton>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
