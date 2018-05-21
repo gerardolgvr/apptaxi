@@ -73,10 +73,8 @@
                     android:text="@string/text_button_login"
                     android:theme="@style/RaisedButtonDark"/>
 
-                <com.google.android.gms.common.SignInButton
-                    android:id="@+id/signInButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></com.google.android.gms.common.SignInButton>
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -97,7 +97,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         gMap = googleMap;
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
-
+        /*if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+            gMap.setMyLocationEnabled(true);
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[] {
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION },
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }*/
 
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)

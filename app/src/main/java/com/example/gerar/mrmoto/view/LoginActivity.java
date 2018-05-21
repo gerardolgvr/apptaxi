@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity {
     //elementos para la autenticacion en firebase
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -43,34 +43,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     //variable de uso
     private String email, password, uID;
 
-    //
-    private GoogleApiClient googleApiClient;
-    private SignInButton signInButton;
-    public static final int SIGN_IN_CODE = 777;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder()
-                .requestEmail()
-                .requestProfile()
-                .build();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        signInButton = (SignInButton) findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, SIGN_IN_CODE);
-            }
-        });
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -160,29 +137,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         startActivity(intent);
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == SIGN_IN_CODE){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-
-
-    }
-
-    private void handleSignInResult(GoogleSignInResult result) {
-        if(result.isSuccess()){
-            goHome();
-        } else {
-            Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
 
