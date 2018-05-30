@@ -1,27 +1,16 @@
 package com.example.gerar.mrmoto.view;
 
-import android.content.Intent;
-import android.os.Bundle;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.gerar.mrmoto.R;
 import com.example.gerar.mrmoto.fragments.HistoryFragment;
 import com.example.gerar.mrmoto.fragments.MapFragment;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -54,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        showToolbar("Mr Moto", false);
+        showToolbar("Xiimbal", false);
 
         if(savedInstanceState == null){
             currentFragment = new MapFragment();
